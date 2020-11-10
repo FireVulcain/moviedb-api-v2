@@ -1,12 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700;800&display=swap");
+
 :root {
     --color-white: 255, 255, 255;
     --color-light-grey: 188, 190, 220;
+    --background-blue: 43, 45, 66;
 }
 
 /* General */
 * {
     box-sizing: border-box;
+}
+a {
+    text-decoration: none;
 }
 body {
     font-family: Overpass, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
@@ -37,7 +42,7 @@ body {
 }
 /* Header */
 header {
-    background: #2b2d42;
+    background: rgb(var(--background-blue));
 }
 nav,
 nav .nav-left {
@@ -62,12 +67,10 @@ nav img:hover {
 nav a {
     margin-right: 2.5rem;
     color: rgb(var(--color-light-grey));
-    text-decoration: none;
 }
 nav a.active-link {
     margin-right: 2.5rem;
     color: rgb(var(--color-white));
-    text-decoration: none;
 }
 nav .nav-right a:last-of-type {
     margin-right: 0;
@@ -95,7 +98,7 @@ main.container {
 
 .selector-wrap {
     border-radius: 30px;
-    border: 2px solid #2b2d42;
+    border: 2px solid rgb(var(--background-blue));
 }
 .selector-wrap button {
     width: 125px;
@@ -107,7 +110,7 @@ main.container {
     cursor: pointer;
 }
 .selector-wrap button.selected {
-    background: #2b2d42;
+    background: rgb(var(--background-blue));
     color: #fff;
 }
 /* list */
@@ -146,17 +149,19 @@ main.container {
     max-width: 35px;
     position: absolute;
     top: -20px;
+    background: rgb(8, 28, 34);
+    border-radius: 100%;
+    padding: 2px;
 }
-.list .item-content .CircularProgressbar text {
-    font-size: 42px;
+.CircularProgressbar text {
+    font-size: 2.5rem !important;
     font-weight: bold;
-    dominant-baseline: mathematical;
+    dominant-baseline: mathematical !important;
 }
 
 .list .title a {
     display: block;
     color: #000;
-    text-decoration: none;
     font-weight: 800;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -173,4 +178,295 @@ main.container {
     background-position: 50% 150px;
     background-size: 1300px;
     background-repeat: no-repeat;
+}
+
+/* Single */
+
+/* LEFT HEADER */
+.header-single {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right -200px top;
+}
+.header-single .header-filter {
+    background-image: linear-gradient(to right, rgba(12.94%, 14.9%, 22.75%, 1) 150px, rgba(20.39%, 22.35%, 29.02%, 0.84) 100%);
+}
+.header-wrapper {
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+}
+.header-wrapper .poster {
+    max-height: 450px;
+}
+.header-wrapper .poster img {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.header-wrapper .network {
+    background: rgba(255, 255, 255, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* RIGHT HEADER */
+
+/* TITLE */
+.header-wrapper .header-infos {
+    padding-left: 2.5rem;
+}
+.header-wrapper .header-infos .title {
+    margin-bottom: 1rem;
+}
+.header-wrapper .header-infos .title * {
+    color: rgb(var(--color-white));
+}
+.header-wrapper .header-infos .title h2,
+.header-wrapper .header-infos .title h2 a {
+    font-size: 2.2rem;
+}
+.header-wrapper .header-infos .title h2 a {
+    font-weight: 700;
+}
+.header-wrapper .header-infos .title h2 .release-date {
+    display: inline-block;
+    margin-left: 5px;
+    opacity: 0.8;
+    font-weight: 400;
+}
+.header-wrapper .header-infos .title .facts > span {
+    display: inline-block;
+    margin-right: 1rem;
+}
+.header-wrapper .header-infos .title .facts .certification {
+    border: 1px solid rgba(100%, 100%, 100%, 0.6);
+    color: rgba(100%, 100%, 100%, 0.6);
+    padding: 4px 4px 0.06em 4px;
+    line-height: 1;
+    border-radius: 2px;
+}
+.header-wrapper .header-infos .title .facts .genres a {
+    display: inline-block;
+}
+.header-wrapper .header-infos .title .facts .runtime {
+    position: relative;
+}
+.header-wrapper .header-infos .title .facts .runtime::before {
+    font-size: 1.1em;
+    line-height: 1;
+    content: "\2022";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 2px;
+    left: -12px;
+    display: inline-flex;
+    align-content: center;
+    align-items: center;
+}
+
+/* Score Trailer */
+.header-wrapper .chart .CircularProgressbar {
+    max-width: 68px;
+    background: rgb(8, 28, 34);
+    border-radius: 100%;
+    padding: 4px;
+}
+
+.header-wrapper .score-trailer {
+    margin-bottom: 1rem;
+}
+.header-wrapper .score-trailer,
+.header-wrapper .score-trailer .chart {
+    display: flex;
+    align-items: center;
+}
+.header-wrapper .score-trailer * {
+    color: rgb(var(--color-white));
+    font-size: 1rem;
+    font-weight: 600;
+}
+.header-wrapper .score-trailer .chart > p {
+    margin-left: 0.5rem;
+    margin-right: 1rem;
+}
+
+/* Overview */
+.overview * {
+    color: rgb(var(--color-white));
+}
+.overview h3.tagline {
+    font-size: 1.1em;
+    opacity: 0.7;
+    font-weight: 400;
+    font-style: italic;
+}
+.overview h3.title {
+    font-weight: 600;
+    font-size: 1.3em;
+    margin-top: 10px;
+}
+
+.overview ol.creator {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+.overview ol.creator li {
+    width: 33%;
+}
+.overview ol.creator li a {
+    display: inline-block;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.overview ol.creator li .character {
+    font-size: 0.8em;
+}
+
+/* MODAL VIDEO */
+@keyframes modal-video {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modal-video-inner {
+    from {
+        transform: translate(0, 100px);
+    }
+    to {
+        transform: translate(0, 0);
+    }
+}
+
+.modal-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000000;
+    cursor: pointer;
+    opacity: 1;
+    animation-timing-function: ease-out;
+    animation-duration: 0.3s;
+    animation-name: modal-video;
+    -webkit-transition: opacity 0.3s ease-out;
+    -moz-transition: opacity 0.3s ease-out;
+    -ms-transition: opacity 0.3s ease-out;
+    -o-transition: opacity 0.3s ease-out;
+    transition: opacity 0.3s ease-out;
+}
+
+.modal-video-effect-exit {
+    opacity: 0;
+}
+
+.modal-video-effect-exit .modal-video-movie-wrap {
+    -webkit-transform: translate(0, 100px);
+    -moz-transform: translate(0, 100px);
+    -ms-transform: translate(0, 100px);
+    -o-transform: translate(0, 100px);
+    transform: translate(0, 100px);
+}
+
+.modal-video-body {
+    max-width: 940px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: table;
+}
+
+.modal-video-inner {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-video-movie-wrap {
+    width: 100%;
+    height: 0;
+    position: relative;
+    padding-bottom: 56.25%;
+    background-color: #333;
+    animation-timing-function: ease-out;
+    animation-duration: 0.3s;
+    animation-name: modal-video-inner;
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+    -moz-transition: -moz-transform 0.3s ease-out;
+    -ms-transition: -ms-transform 0.3s ease-out;
+    -o-transition: -o-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+}
+
+.modal-video-movie-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-video-close-btn {
+    position: absolute;
+    z-index: 2;
+    top: -35px;
+    right: -35px;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+    border: none;
+    background: transparent;
+}
+
+.modal-video-close-btn:before {
+    transform: rotate(45deg);
+}
+
+.modal-video-close-btn:after {
+    transform: rotate(-45deg);
+}
+
+.modal-video-close-btn:before,
+.modal-video-close-btn:after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: #fff;
+    border-radius: 5px;
+    margin-top: -6px;
+}
+.btn-modal {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.btn-modal,
+.btn-modal:focus {
+    outline: 0;
+}
+.btn-modal svg {
+    fill: rgb(var(--color-white));
 }
