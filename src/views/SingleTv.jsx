@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import moment from 'moment';
 
 /* Components */
 import axios from 'axios';
@@ -6,6 +7,7 @@ import { Poster } from '../components/SingleTv/Poster';
 import { Overview } from '../components/SingleTv/Overview';
 import { ScoreTrailer } from '../components/SingleTv/ScoreTrailer';
 import { Title } from '../components/SingleTv/Title';
+import Head from "./../components/layouts/Head";
 
 export const SingleTv = ({match}) => {
     const [infoTv, setInfoTv] = useState({});
@@ -27,21 +29,28 @@ export const SingleTv = ({match}) => {
     }, [match.params.id]);
 
     return (
-        <main>
-            {Object.keys(infoTv).length !== 0 && infoTv.constructor === Object ? (     
-                <div className="header-single" style={{backgroundImage: `url('//image.tmdb.org/t/p/w1920_and_h800_multi_faces/${infoTv.backdrop_path}')`}}>
-                    <div className="header-filter">
-                        <div className="header-wrapper container">
-                            <Poster infoTv={infoTv}/>
-                            <div className="header-infos">
-                                <Title infoTv={infoTv} />
-                                <ScoreTrailer infoTv={infoTv} />
-                                <Overview infoTv={infoTv} />
+        <Head
+            pageMeta={{
+                title: `${infoTv.original_name ? infoTv.original_name : ""} (TV Series ${infoTv.first_air_date ? moment(infoTv.first_air_date).format("YYYY") : ""}- ) — MovieDB`,
+                description: infoTv.overview,
+            }}
+        >
+            <main>
+                {Object.keys(infoTv).length !== 0 && infoTv.constructor === Object ? (     
+                    <div className="header-single" style={{backgroundImage: `url('//image.tmdb.org/t/p/w1920_and_h800_multi_faces/${infoTv.backdrop_path}')`}}>
+                        <div className="header-filter">
+                            <div className="header-wrapper container">
+                                <Poster infoTv={infoTv}/>
+                                <div className="header-infos">
+                                    <Title infoTv={infoTv} />
+                                    <ScoreTrailer infoTv={infoTv} />
+                                    <Overview infoTv={infoTv} />
+                                </div>
                             </div>
-                        </div>
-                    </div>                    
-                </div>
-            ) : null}
-        </main>
+                        </div>                    
+                    </div>
+                ) : null}
+            </main>
+        </Head>
     )
 }
