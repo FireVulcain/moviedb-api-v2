@@ -6,6 +6,7 @@ import { Navbar } from "./components/Navbar";
 /* Page */
 import { Home } from "./views/Home";
 import { SingleTv } from "./views/SingleTv";
+import { SingleMovie } from "./views/SingleMovie";
 
 const customHistory = createBrowserHistory();
 
@@ -16,6 +17,7 @@ function App() {
             <Switch>
                 <Route exact path="/" component={Home}></Route>
 
+                <Route exact path="/movie/:id" component={SingleMovie}></Route>
                 <Route exact path="/tv/:id" component={SingleTv}></Route>
             </Switch>
         </Router>

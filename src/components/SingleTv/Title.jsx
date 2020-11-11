@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { Link } from "react-router-dom";
 import moment from 'moment';
 
+import {formatRuntime} from './../../utils/function';
+
 export const Title = ({infoTv}) => {
     const [rating, setRating] = useState({});
     
@@ -31,7 +33,7 @@ export const Title = ({infoTv}) => {
                         )
                     })}
                 </span>
-                <span className="runtime">{infoTv.episode_run_time[0]}m</span>
+                <span className="runtime">{formatRuntime(infoTv.episode_run_time[0])}</span>
             </div>
         </div>
     )

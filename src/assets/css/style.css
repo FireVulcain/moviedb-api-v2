@@ -200,17 +200,7 @@ main.container {
     max-height: 450px;
 }
 .header-wrapper .poster img {
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-}
-.header-wrapper .network {
-    background: rgba(255, 255, 255, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.6rem;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
 }
 
 /* RIGHT HEADER */
@@ -228,6 +218,7 @@ main.container {
 .header-wrapper .header-infos .title h2,
 .header-wrapper .header-infos .title h2 a {
     font-size: 2.2rem;
+    line-height: normal;
 }
 .header-wrapper .header-infos .title h2 a {
     font-weight: 700;
@@ -252,10 +243,12 @@ main.container {
 .header-wrapper .header-infos .title .facts .genres a {
     display: inline-block;
 }
-.header-wrapper .header-infos .title .facts .runtime {
+.header-wrapper .header-infos .title .facts .runtime,
+.header-wrapper .header-infos .title .facts .releases {
     position: relative;
 }
-.header-wrapper .header-infos .title .facts .runtime::before {
+.header-wrapper .header-infos .title .facts .runtime::before,
+.header-wrapper .header-infos .title .facts .releases::before {
     font-size: 1.1em;
     line-height: 1;
     content: "\2022";
@@ -268,6 +261,10 @@ main.container {
     align-content: center;
     align-items: center;
 }
+.header-wrapper .header-infos .title .facts .releases::before {
+    left: 100%;
+    margin-left: 5px;
+}
 
 /* Score Trailer */
 .header-wrapper .chart .CircularProgressbar {
@@ -278,7 +275,7 @@ main.container {
 }
 
 .header-wrapper .score-trailer {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
 }
 .header-wrapper .score-trailer,
 .header-wrapper .score-trailer .chart {
@@ -294,21 +291,32 @@ main.container {
     margin-left: 0.5rem;
     margin-right: 1rem;
 }
+.header-wrapper .score-trailer .video button {
+    display: flex;
+    align-items: center;
+}
+.header-wrapper .score-trailer .video button svg {
+    margin-right: 10px;
+}
 
 /* Overview */
 .overview * {
     color: rgb(var(--color-white));
 }
 .overview h3.tagline {
-    font-size: 1.1em;
+    font-size: 1rem;
     opacity: 0.7;
     font-weight: 400;
     font-style: italic;
 }
-.overview h3.title {
+.overview h3.title-overview {
+    margin-bottom: 10px;
     font-weight: 600;
     font-size: 1.3em;
-    margin-top: 10px;
+    margin-top: 15px;
+}
+.overview .overview-text p {
+    line-height: normal;
 }
 
 .overview ol.creator {
@@ -319,6 +327,7 @@ main.container {
 }
 .overview ol.creator li {
     width: 33%;
+    margin-bottom: 1.5rem;
 }
 .overview ol.creator li a {
     display: inline-block;

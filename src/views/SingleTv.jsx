@@ -10,10 +10,9 @@ import { Title } from '../components/SingleTv/Title';
 export const SingleTv = ({match}) => {
     const [infoTv, setInfoTv] = useState({});
     
-
     useEffect(() => {
         const paramId = match.params.id;
-        axios.get(`https://api.themoviedb.org/3/tv/${paramId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=content_ratings,videos&region=US`).then((response) => {
+        axios.get(`https://api.themoviedb.org/3/tv/${paramId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=content_ratings,videos,translations&region=US`).then((response) => {
             setInfoTv(response.data);
         });
     }, [match.params.id]);
