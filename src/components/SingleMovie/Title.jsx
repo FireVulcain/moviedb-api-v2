@@ -44,11 +44,21 @@ export const Title = ({infoMovie}) => {
                 }
                 
                 
-                {rating.length > 0 ? (
-                    <span className="releases">
-                        {moment(rating[0].release_date).format("MM/DD/YYYY")} ({language})
-                    </span>
-                ) : null}
+                {rating.length > 0 ? rating.map((r, i) => {
+                    if(r.type === 3){
+                        return (
+                            <span className="releases" key={i}>
+                                {moment(rating[0].release_date).format("MM/DD/YYYY")} ({language})
+                            </span>
+                        )
+                    }else{
+                        return (
+                            <span className="releases" key={i}>
+                                {moment(infoMovie.release_date).format("MM/DD/YYYY")}
+                            </span>
+                        )
+                    }
+                }) : null}
                 
                 <span className="genres">
                     {infoMovie.genres.map((genre, key) => {

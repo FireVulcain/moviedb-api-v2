@@ -22,14 +22,24 @@ export const Popular = () => {
     const [fadeState, setFadeState] = useState("fade-in");
 
     useEffect(() => {
+        const source = axios.CancelToken.source();
+        
         setListPopular([]);
-        axios.get(`https://api.themoviedb.org/3/${typeState}/popular?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&region=US&page=1`).then((response) => {
+        axios.get(`https://api.themoviedb.org/3/${typeState}/popular?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&region=US&page=1`, {cancelToken: source.token}).then((response) => {
                 setListPopular([...response.data.results])
             }).then(() => {
-                axios.get(`https://api.themoviedb.org/3/${typeState}/popular?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&region=US&page=2`).then((response) => {
+                axios.get(`https://api.themoviedb.org/3/${typeState}/popular?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&region=US&page=2`, {cancelToken: source.token}).then((response) => {
                     setListPopular(prevState => [...prevState, ...response.data.results])
-                })
-            })
+                }).catch(err => {
+                    console.log("Popular: " + err.message);
+                });
+            }).catch(err => {
+                console.log("Popular: " + err.message);
+            });
+
+        return () => {
+            source.cancel("Component got unmounted");
+        };
     }, [typeState]);
 
     const handleClick = (type) => {

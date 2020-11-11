@@ -22,14 +22,24 @@ export const Trending = () => {
     const [fadeState, setFadeState] = useState("fade-in");
 
     useEffect(() => {
+        const source = axios.CancelToken.source();
+
         setListTrending([]);
-        axios.get(`https://api.themoviedb.org/3/trending/all/${typeState}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&region=US&page=1`).then((response) => {
+        axios.get(`https://api.themoviedb.org/3/trending/all/${typeState}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&region=US&page=1`, {cancelToken: source.token}).then((response) => {
             setListTrending([...response.data.results])
         }).then(() => {
-            axios.get(`https://api.themoviedb.org/3/trending/all/${typeState}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&region=US&page=2`).then((response) => {
+            axios.get(`https://api.themoviedb.org/3/trending/all/${typeState}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&region=US&page=2`, {cancelToken: source.token}).then((response) => {
                 setListTrending(prevState => [...prevState, ...response.data.results])
-            })
-        })
+            }).catch(err => {
+                console.log("Trending: " + err.message);
+            });
+        }).catch(err => {
+            console.log("Trending: " + err.message);
+        });
+
+        return () => {
+            source.cancel("Component got unmounted");
+        };
     }, [typeState]);
 
     const handleClick = (type) => {

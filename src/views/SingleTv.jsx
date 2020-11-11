@@ -11,10 +11,19 @@ export const SingleTv = ({match}) => {
     const [infoTv, setInfoTv] = useState({});
     
     useEffect(() => {
+        const source = axios.CancelToken.source();
+
         const paramId = match.params.id;
-        axios.get(`https://api.themoviedb.org/3/tv/${paramId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=content_ratings,videos,translations&region=US`).then((response) => {
+        axios.get(`https://api.themoviedb.org/3/tv/${paramId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=content_ratings,videos,translations&region=US`, {cancelToken: source.token}).then((response) => {
             setInfoTv(response.data);
+        }).catch(err => {
+            console.log("SingleTv: " + err.message);
         });
+        
+
+        return () => {
+            source.cancel("Component got unmounted");
+        };
     }, [match.params.id]);
 
     return (

@@ -11,10 +11,18 @@ export const SingleMovie = ({match}) => {
     const [infoMovie, setInfoMovie] = useState({});
     
     useEffect(() => {
+        const source = axios.CancelToken.source();
+
         const paramId = match.params.id;
-        axios.get(`https://api.themoviedb.org/3/movie/${paramId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=credits,release_dates,videos`).then((response) => {
+        axios.get(`https://api.themoviedb.org/3/movie/${paramId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=credits,release_dates,videos`, {cancelToken: source.token}).then((response) => {
             setInfoMovie(response.data);
+        }).catch(err => {
+            console.log("SingleMovie: " + err.message);
         });
+
+        return () => {
+            source.cancel("Component got unmounted");
+        };
     }, [match.params.id]);
 
     return (
