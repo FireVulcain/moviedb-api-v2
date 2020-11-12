@@ -22,7 +22,7 @@ export const ScoreTrailer = ({infoTv}) => {
     return (
         <div className="score-trailer">
             <div className="chart">
-                <CircularProgressbar background={true} value={infoTv.vote_average * 10} text={`${infoTv.vote_average * 10}`} styles={buildStyles({
+                <CircularProgressbar background={true} value={infoTv.vote_average * 10} text={`${infoTv.vote_average > 0 ? infoTv.vote_average * 10 : "NR"}`} styles={buildStyles({
                     pathColor: pathColorPercentage(infoTv.vote_average* 10),
                     textColor: '#fff',
                     trailColor: trailColorPercentage(infoTv.vote_average* 10),

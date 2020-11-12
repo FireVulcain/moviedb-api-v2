@@ -1,5 +1,5 @@
-import { Router, Switch, Route } from "react-router-dom";
-import { createBrowserHistory } from "history";
+import React, { useEffect, useState } from "react";
+import { Switch, Route, withRouter } from "react-router-dom";
 
 /* Components */
 import { Navbar } from "./components/Navbar";
@@ -8,20 +8,26 @@ import { Home } from "./views/Home";
 import { SingleTv } from "./views/SingleTv";
 import { SingleMovie } from "./views/SingleMovie";
 
-const customHistory = createBrowserHistory();
+function App({ location }) {
+    const [currentPath, setCurrentPath] = useState(location.pathname);
 
-function App() {
+    useEffect(() => {
+        const { pathname } = location;
+
+        setCurrentPath(pathname);
+    }, [location]);
+
     return (
-        <Router history={customHistory}>
-            <Navbar />
+        <>
+            <Navbar currentPath={currentPath} />
             <Switch>
                 <Route exact path="/" component={Home}></Route>
 
                 <Route exact path="/movie/:id" component={SingleMovie}></Route>
                 <Route exact path="/tv/:id" component={SingleTv}></Route>
             </Switch>
-        </Router>
+        </>
     );
 }
 
-export default App;
+export default withRouter(App);

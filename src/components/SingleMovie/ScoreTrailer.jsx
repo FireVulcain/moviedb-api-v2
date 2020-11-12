@@ -22,7 +22,7 @@ export const ScoreTrailer = ({infoMovie}) => {
     return (
         <div className="score-trailer">
             <div className="chart">
-                <CircularProgressbar background={true} value={infoMovie.vote_average * 10} text={`${infoMovie.vote_average * 10}`} styles={buildStyles({
+                <CircularProgressbar background={true} value={infoMovie.vote_average * 10} text={`${infoMovie.vote_average > 0 ? infoMovie.vote_average * 10 : "NR"}`} styles={buildStyles({
                     pathColor: pathColorPercentage(infoMovie.vote_average* 10),
                     textColor: '#fff',
                     trailColor: trailColorPercentage(infoMovie.vote_average* 10),

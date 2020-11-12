@@ -72,9 +72,84 @@ nav a.active-link {
     margin-right: 2.5rem;
     color: rgb(var(--color-white));
 }
-nav .nav-right a:last-of-type {
-    margin-right: 0;
+nav .nav-right svg {
+    fill: rgb(var(--color-light-grey));
+    cursor: pointer;
 }
+
+/* search bar */
+.search-bar {
+    position: absolute;
+    top: 102px;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid rgba(var(--color-light-grey), 1);
+    border-bottom: 1px solid rgba(var(--color-light-grey), 1);
+    background: rgb(var(--color-white));
+    z-index: 999;
+}
+.close-search,
+.hide-result {
+    display: none;
+}
+.search-bar form {
+    position: relative;
+}
+.search-bar form > svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.search-bar form > svg:last-of-type {
+    cursor: pointer;
+}
+.search-bar form > svg:first-of-type {
+    margin-left: -0.5rem;
+}
+.search-bar form #search-input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+.search-bar form #search-input::placeholder {
+    font-size: 1.1rem;
+}
+.search-bar form #search-input,
+.search-bar form #search-input:focus {
+    border: none;
+    outline: 0;
+}
+.search-results {
+    background: rgb(var(--color-white));
+}
+.search-results li:hover {
+    background-color: #f2f2f2;
+}
+.search-results li:not(:last-of-type) {
+    border-bottom: 1px solid rgba(var(--color-light-grey), 1);
+}
+.search-results li:first-of-type {
+    border-top: 1px solid rgba(var(--color-light-grey), 1);
+}
+.search-results li a {
+    padding: 0.3rem 0;
+    display: block;
+    font-size: 0.9rem;
+    color: #212529;
+    letter-spacing: normal;
+    line-height: normal;
+}
+.search-results li a p {
+    margin-left: 1rem;
+}
+.search-results li a div {
+    display: flex;
+    align-items: center;
+}
+.search-results li a svg {
+    margin-left: -1rem;
+}
+
 .container {
     max-width: 1300px;
     margin: 0 auto;
