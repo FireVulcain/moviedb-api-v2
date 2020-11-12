@@ -34,7 +34,7 @@ export function formatRuntime(runtime) {
         minutes = "0" + minutes;
     }
 
-    if (runtime > 60) {
+    if (runtime >= 60) {
         return `${hours}h ${minutes}m`;
     } else {
         return `${minutes}m`;

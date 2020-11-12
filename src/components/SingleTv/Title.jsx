@@ -5,10 +5,13 @@ import moment from 'moment';
 import {formatRuntime} from './../../utils/function';
 
 export const Title = ({infoTv}) => {
-    const [rating, setRating] = useState({});
+    const [rating, setRating] = useState([]);
     
     useEffect(() => {
-        setRating(infoTv.content_ratings.results.filter(function (rating) { return rating.iso_3166_1 === "US"}));
+        if(infoTv.content_ratings.length>0){
+            setRating(infoTv.content_ratings.results.filter(function (rating) { return rating.iso_3166_1 === "US"}));
+        }
+        
     }, [infoTv.content_ratings]);
 
     return (
@@ -20,9 +23,16 @@ export const Title = ({infoTv}) => {
                 <span className="release-date">({moment(infoTv.first_air_date).format("YYYY")})</span>
             </h2>
             <div className="facts">
-                <span className="certification">
-                    {rating.length > 0 ? rating[0].rating : infoTv.content_ratings.results[0].rating}
-                </span>
+                {rating.length > 0 ? (
+                    <span className="certification">
+                        {rating[0].rating}
+                    </span>
+                ) : infoTv.content_ratings.length > 0 ? (
+                    <span className="certification">
+                        {infoTv.content_ratings.results[0].rating}
+                    </span>
+                ) : null}
+
                 <span className="genres">
                     {infoTv.genres.map((genre, key) => {
                         return (

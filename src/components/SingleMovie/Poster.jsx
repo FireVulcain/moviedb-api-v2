@@ -6,13 +6,18 @@ export const Poster = ({ infoMovie }) => {
     return (
         <div className="poster-wrapper">
             <div className="poster">
-                <LazyLoadImage
-                    width={300}
-                    height={450}
-                    alt={infoMovie.original_name}
-                    title={infoMovie.original_name}
-                    effect="opacity"
-                    src={`//image.tmdb.org/t/p/w300_and_h450_bestv2${infoMovie.poster_path}`}/>
+                {infoMovie.poster_path ? (
+                    <LazyLoadImage
+                        width={300}
+                        height={450}
+                        alt={infoMovie.original_name}
+                        title={infoMovie.original_name}
+                        effect="opacity"
+                        src={`//image.tmdb.org/t/p/w300_and_h450_bestv2${infoMovie.poster_path}`}/>
+                ) : (
+                    <div className="no-poster"></div>
+                ) }
+                
                 
             </div>
         </div>

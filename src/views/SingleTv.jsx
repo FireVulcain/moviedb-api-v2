@@ -37,7 +37,7 @@ export const SingleTv = ({match}) => {
         >
             <main>
                 {Object.keys(infoTv).length !== 0 && infoTv.constructor === Object ? (     
-                    <div className="header-single" style={{backgroundImage: `url('//image.tmdb.org/t/p/w1920_and_h800_multi_faces/${infoTv.backdrop_path}')`}}>
+                    <div className="header-single" style={infoTv.backdrop_path ? {backgroundImage: `url('//image.tmdb.org/t/p/w1920_and_h800_multi_faces/${infoTv.backdrop_path}')`} : null}>
                         <div className="header-filter">
                             <div className="header-wrapper container">
                                 <Poster infoTv={infoTv}/>

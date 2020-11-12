@@ -36,7 +36,7 @@ export const SingleMovie = ({match}) => {
         >
             <main>
                 {Object.keys(infoMovie).length !== 0 && infoMovie.constructor === Object ? (     
-                    <div className="header-single" style={{backgroundImage: `url('//image.tmdb.org/t/p/w1920_and_h800_multi_faces/${infoMovie.backdrop_path}')`}}>
+                    <div className="header-single" style={infoMovie.backdrop_path ? {backgroundImage: `url('//image.tmdb.org/t/p/w1920_and_h800_multi_faces/${infoMovie.backdrop_path}')`} : null}>
                         <div className="header-filter">
                             <div className="header-wrapper container">
                                 <Poster infoMovie={infoMovie}/>

@@ -77,7 +77,7 @@ export const SearchBar = ({ open, setOpen, currentPath }) => {
                     setSearchValue('');
                 }} />
             </form>
-            <div  className={`search-results ${displayResult ? 'display-result' : 'hide-result'}`}>
+            <div  className={`searchbar-results ${displayResult ? 'display-result' : 'hide-result'}`}>
                 <ul>
                     {searchResult.slice(0, 10).map((result, key) => {
                         const title = result.title ? result.title : result.original_name ? result.original_name : result.name

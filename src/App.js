@@ -7,6 +7,7 @@ import { Navbar } from "./components/Navbar";
 import { Home } from "./views/Home";
 import { SingleTv } from "./views/SingleTv";
 import { SingleMovie } from "./views/SingleMovie";
+import { Search } from "./views/Search";
 
 function App({ location }) {
     const [currentPath, setCurrentPath] = useState(location.pathname);
@@ -25,6 +26,9 @@ function App({ location }) {
 
                 <Route exact path="/movie/:id" component={SingleMovie}></Route>
                 <Route exact path="/tv/:id" component={SingleTv}></Route>
+
+                <Route exact path="/search" component={Search}></Route>
+                <Route exact path="/search/:type" component={Search}></Route>
             </Switch>
         </>
     );
