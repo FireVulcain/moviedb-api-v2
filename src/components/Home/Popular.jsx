@@ -30,12 +30,8 @@ export const Popular = () => {
             }).then(() => {
                 axios.get(`https://api.themoviedb.org/3/${typeState}/popular?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&region=US&page=2`, {cancelToken: source.token}).then((response) => {
                     setListPopular(prevState => [...prevState, ...response.data.results])
-                }).catch(err => {
-                    console.log("Popular: " + err.message);
-                });
-            }).catch(err => {
-                console.log("Popular: " + err.message);
-            });
+                }).catch();
+            }).catch();
 
         return () => {
             source.cancel("Component got unmounted");

@@ -30,15 +30,11 @@ export const SearchBar = ({ open, setOpen, currentPath }) => {
         if(searchValue !== ""){
             axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&query=${searchValue}`, {cancelToken: source.token}).then((response) => {
                 setSearchResult([...response.data.results]);
-            }).catch(err => {
-                console.log("Search: " + err.message);
-            });
+            }).catch();
         }else{
             axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&region=US`, {cancelToken: source.token}).then((response) => {
                 setSearchResult([...response.data.results]);
-            }).catch(err => {
-                console.log("Search Trending: " + err.message);
-            });
+            }).catch();
         }
 
         return () => {

@@ -27,12 +27,8 @@ export const Upcoming = () => {
             }).then(() => {
                 axios.get(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&region=US&page=2`, {cancelToken: source.token}).then((response) => {
                     setListUpcoming(prevState => [...prevState, ...response.data.results])
-                }).catch(err => {
-                    console.log("Upcoming: " + err.message);
-                });
-            }).catch(err => {
-                console.log("Upcoming: " + err.message);
-            });
+                }).catch();
+            }).catch();
 
             return () => {
                 source.cancel("Component got unmounted");

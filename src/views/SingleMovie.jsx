@@ -18,9 +18,7 @@ export const SingleMovie = ({match}) => {
         const paramId = match.params.id;
         axios.get(`https://api.themoviedb.org/3/movie/${paramId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=credits,release_dates,videos`, {cancelToken: source.token}).then((response) => {
             setInfoMovie(response.data);
-        }).catch(err => {
-            console.log("SingleMovie: " + err.message);
-        });
+        }).catch();
 
         return () => {
             source.cancel("Component got unmounted");
