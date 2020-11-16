@@ -8,7 +8,7 @@ export const Title = ({infoTv}) => {
     const [rating, setRating] = useState([]);
     
     useEffect(() => {
-        if(infoTv.content_ratings.length>0){
+        if(infoTv.content_ratings.results.length > 0){
             setRating(infoTv.content_ratings.results.filter(function (rating) { return rating.iso_3166_1 === "US"}));
         }
         
@@ -37,7 +37,7 @@ export const Title = ({infoTv}) => {
                     {infoTv.genres.map((genre, key) => {
                         return (
                             <React.Fragment key={key}>
-                                <Link to={`genre/${genre.id}`}>{genre.name}</Link>
+                                <Link to={`/genre/${genre.id}`}>{genre.name}</Link>
                                 {key !== infoTv.genres.length - 1 && (<span className="separator">, </span>)}
                             </React.Fragment>
                         )

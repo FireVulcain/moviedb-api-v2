@@ -64,7 +64,7 @@ export const Title = ({infoMovie}) => {
                     {infoMovie.genres.map((genre, key) => {
                         return (
                             <React.Fragment key={key}>
-                                <Link to={`genre/${genre.id}`}>{genre.name}</Link>
+                                <Link to={`/genre/${genre.id}`}>{genre.name}</Link>
                                 {key !== infoMovie.genres.length - 1 && (<span className="separator">, </span>)}
                             </React.Fragment>
                         )
