@@ -25,12 +25,12 @@ export const Title = ({infoMovie}) => {
 
     return (
         <div className="title">
-            <h2>
+            <h1>
                 <Link to={`/movie/${infoMovie.id}`}>
                     {infoMovie.title}
                 </Link>
                 <span className="release-date">({moment(infoMovie.release_date).format("YYYY")})</span>
-            </h2>
+            </h1>
             <div className="facts">
                 {rating.length > 0 ? rating[0].certification !== "" ? (
                     <span className="certification">

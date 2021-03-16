@@ -5,8 +5,8 @@ export const Overview = ({ infoTv }) => {
     
     return (
         <div className="overview">
-            <h3 className="tagline">{infoTv.tagline}</h3>
-            <h3 className="title-overview">Overview</h3>
+            <h2 className="tagline">{infoTv.tagline}</h2>
+            <h2 className="title-overview">Overview</h2>
             <div className="overview-text">
                 <p>{infoTv.overview}</p>
             </div>

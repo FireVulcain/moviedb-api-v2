@@ -16,12 +16,12 @@ export const Title = ({infoTv}) => {
 
     return (
         <div className="title">
-            <h2>
+            <h1>
                 <Link to={`/tv/${infoTv.id}`}>
-                    {infoTv.original_name}
+                    {infoTv.name ? infoTv.name : infoTv.original_name}
                 </Link>
                 <span className="release-date">({moment(infoTv.first_air_date).format("YYYY")})</span>
-            </h2>
+            </h1>
             <div className="facts">
                 {rating.length > 0 ? (
                     <span className="certification">

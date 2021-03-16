@@ -8,6 +8,7 @@ import { Overview } from '../components/SingleTv/Overview';
 import { ScoreTrailer } from '../components/SingleTv/ScoreTrailer';
 import { Title } from '../components/SingleTv/Title';
 import Head from "./../components/layouts/Head";
+import { Cast } from '../components/SingleTv/Cast';
 
 export const SingleTv = ({match}) => {
     const [infoTv, setInfoTv] = useState({});
@@ -16,7 +17,7 @@ export const SingleTv = ({match}) => {
         const source = axios.CancelToken.source();
 
         const paramId = match.params.id;
-        axios.get(`https://api.themoviedb.org/3/tv/${paramId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=content_ratings,videos,tagline&region=US`, {cancelToken: source.token}).then((response) => {
+        axios.get(`https://api.themoviedb.org/3/tv/${paramId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=credits,content_ratings,videos,tagline&region=US`, {cancelToken: source.token}).then((response) => {
             setInfoTv(response.data);
         }).catch();
         
@@ -29,7 +30,7 @@ export const SingleTv = ({match}) => {
     return (
         <Head
             pageMeta={{
-                title: `${infoTv.original_name ? infoTv.original_name : ""} (TV Series ${infoTv.first_air_date ? moment(infoTv.first_air_date).format("YYYY") : ""}- ) — MovieDB`,
+                title: `${infoTv.name ? infoTv.name : infoTv.original_name } (TV Series ${infoTv.first_air_date ? moment(infoTv.first_air_date).format("YYYY") : ""}- ) — MovieDB`,
                 description: infoTv.overview,
             }}
         >
@@ -48,6 +49,21 @@ export const SingleTv = ({match}) => {
                         </div>                    
                     </div>
                 ) : null}
+                <div className="column-wrapper">
+                    <div className="main-content">
+                        <div className="left-column">
+                            {infoTv.credits ? ( 
+                                <section className="casts">
+                                    <Cast casts={infoTv.credits.cast}/>
+                                </section>
+                            )
+                            : null}
+                        </div>
+                        <div className="right-column">
+                            ici
+                        </div>
+                    </div>
+                </div>
             </main>
         </Head>
     )

@@ -7,8 +7,8 @@ export const Overview = ({ infoMovie }) => {
     
     return (
         <div className="overview">
-            <h3 className="tagline">{infoMovie.tagline}</h3>
-            <h3 className="title-overview">Overview</h3>
+            <h2 className="tagline">{infoMovie.tagline}</h2>
+            <h2 className="title-overview">Overview</h2>
             <div className="overview-text">
                 <p>{infoMovie.overview}</p>
             </div>
