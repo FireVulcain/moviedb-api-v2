@@ -7,7 +7,8 @@ import { Poster } from '../components/SingleMovie/Poster';
 import { Overview } from '../components/SingleMovie/Overview';
 import { ScoreTrailer } from '../components/SingleMovie/ScoreTrailer';
 import { Title } from '../components/SingleMovie/Title';
-import { Cast } from "../components/SingleCommon/Cast"
+import { Cast } from "../components/SingleCommon/Cast";
+import {Sidebar} from '../components/SingleMovie/Sidebar/Sidebar'
 import Head from "./../components/layouts/Head";
 
 export const SingleMovie = ({match}) => {
@@ -17,7 +18,7 @@ export const SingleMovie = ({match}) => {
         const source = axios.CancelToken.source();
 
         const paramId = match.params.id;
-        axios.get(`https://api.themoviedb.org/3/movie/${paramId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=credits,release_dates,videos`, {cancelToken: source.token}).then((response) => {
+        axios.get(`https://api.themoviedb.org/3/movie/${paramId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=keywords,credits,release_dates,videos`, {cancelToken: source.token}).then((response) => {
             setInfoMovie(response.data);
         }).catch();
 
@@ -59,7 +60,7 @@ export const SingleMovie = ({match}) => {
                             : null}
                         </div>
                         <div className="right-column">
-                            ici
+                            <Sidebar info={infoMovie} />
                         </div>
                     </div>
                 </div>
