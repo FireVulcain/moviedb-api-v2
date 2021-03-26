@@ -8,7 +8,8 @@ import { Overview } from '../components/SingleTv/Overview';
 import { ScoreTrailer } from '../components/SingleTv/ScoreTrailer';
 import { Title } from '../components/SingleTv/Title';
 import Head from "./../components/layouts/Head";
-import { Cast } from '../components/SingleTv/Cast';
+import { Cast } from '../components/SingleCommon/Cast';
+import { Sidebar } from '../components/SingleTv/Sidebar/Sidebar';
 
 export const SingleTv = ({match}) => {
     const [infoTv, setInfoTv] = useState({});
@@ -17,7 +18,7 @@ export const SingleTv = ({match}) => {
         const source = axios.CancelToken.source();
 
         const paramId = match.params.id;
-        axios.get(`https://api.themoviedb.org/3/tv/${paramId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=credits,content_ratings,videos,tagline&region=US`, {cancelToken: source.token}).then((response) => {
+        axios.get(`https://api.themoviedb.org/3/tv/${paramId}?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&append_to_response=keywords,credits,content_ratings,videos,tagline&region=US`, {cancelToken: source.token}).then((response) => {
             setInfoTv(response.data);
         }).catch();
         
@@ -54,13 +55,13 @@ export const SingleTv = ({match}) => {
                         <div className="left-column">
                             {infoTv.credits ? ( 
                                 <section className="casts">
-                                    <Cast casts={infoTv.credits.cast}/>
+                                    <Cast casts={infoTv.credits.cast} type='tv' id={infoTv.id}/>
                                 </section>
                             )
                             : null}
                         </div>
                         <div className="right-column">
-                            ici
+                            <Sidebar info={infoTv}/>
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,7 @@ import { Poster } from '../components/SingleMovie/Poster';
 import { Overview } from '../components/SingleMovie/Overview';
 import { ScoreTrailer } from '../components/SingleMovie/ScoreTrailer';
 import { Title } from '../components/SingleMovie/Title';
+import { Cast } from "../components/SingleCommon/Cast"
 import Head from "./../components/layouts/Head";
 
 export const SingleMovie = ({match}) => {
@@ -47,6 +48,21 @@ export const SingleMovie = ({match}) => {
                         </div>                    
                     </div>
                 ) : null}
+                <div className="column-wrapper">
+                    <div className="main-content">
+                        <div className="left-column">
+                            {infoMovie.credits ? ( 
+                                <section className="casts">
+                                    <Cast casts={infoMovie.credits.cast} type="movie" id={infoMovie.id}/>
+                                </section>
+                            )
+                            : null}
+                        </div>
+                        <div className="right-column">
+                            ici
+                        </div>
+                    </div>
+                </div>
             </main>
         </Head>
     )

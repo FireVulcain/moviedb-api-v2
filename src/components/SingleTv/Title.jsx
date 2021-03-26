@@ -17,9 +17,7 @@ export const Title = ({infoTv}) => {
     return (
         <div className="title">
             <h1>
-                <Link to={`/tv/${infoTv.id}`}>
-                    {infoTv.name ? infoTv.name : infoTv.original_name}
-                </Link>
+                {infoTv.name ? infoTv.name : infoTv.original_name}
                 <span className="release-date">({moment(infoTv.first_air_date).format("YYYY")})</span>
             </h1>
             <div className="facts">
